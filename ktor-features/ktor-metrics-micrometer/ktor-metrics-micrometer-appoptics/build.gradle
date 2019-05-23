@@ -1,0 +1,20 @@
+/*
+ * Copyright 2014-2019 JetBrains s.r.o and contributors. Use of this source code is governed by the Apache 2.0 license.
+ */
+
+description = ''
+
+kotlin {
+    sourceSets.jvmMain.dependencies {
+        api ("io.micrometer:micrometer-registry-appoptics:$micrometer_version")
+        api project(':ktor-features:ktor-metrics-micrometer')
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        // micrometer uses jdk 1.8 features, so we need to use that version here
+        jvmTarget = "1.8"
+    }
+}
+
