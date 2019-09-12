@@ -53,10 +53,10 @@ class MicrometerMetricsPrometheus(config: Configuration) :
             .build()
 
         /**
-         * Defines if a metrics endpoint is installed under "/metrics" for all metrics registered at [registry].
-         * Set to false if you want to declare a custom metric endpoint instead.
+         * Defines where the metrics endpoint is installed for all metrics registered at [registry].
+         * Omit to take the default endoint of `/metrics`.
          */
-        var installDefaultEndpoint = true
+        var defaultEndpointRoute: String? = "/metrics"
     }
 
 
@@ -79,12 +79,11 @@ class MicrometerMetricsPrometheus(config: Configuration) :
                 }
             }
 
-            if (feature.config.installDefaultEndpoint)
-                pipeline.routing {
-                    get("/metrics") {
-                        call.respondMetrics()
-                    }
+            pipeline.routing {
+                get(feature.config.installDefaultEndpoint) {
+                    call.respondMetrics()
                 }
+            }
 
             return feature
         }
