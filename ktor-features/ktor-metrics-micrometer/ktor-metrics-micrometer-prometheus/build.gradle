@@ -1,0 +1,9 @@
+description = ''
+
+kotlin {
+    sourceSets.jvmMain.dependencies {
+        api ("io.micrometer:micrometer-registry-prometheus:$micrometer_version")
+        api project(':ktor-features:ktor-metrics-micrometer')
+    }
+}
+

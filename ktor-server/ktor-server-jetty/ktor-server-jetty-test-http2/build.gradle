@@ -11,16 +11,16 @@ dependencies {
     boot group: 'org.mortbay.jetty.alpn', name: 'alpn-boot', version: project.ext.jetty_alpn_boot_version
 }
 
-configure(tasks.jvmTest) {
-    useJUnit()
-
-    systemProperty 'enable.http2', 'true'
-    exclude("**/*StressTest*")
-
-    if (JavaVersion.current() == JavaVersion.VERSION_1_8) {
-        jvmArgs {
-            def bootClasspath = configurations.boot.files
-            bootClasspath.collect { "-Xbootclasspath/p:${it.absolutePath}" }.iterator()
-        }
-    }
-}
+//configure(tasks.jvmTest) {
+//    useJUnit()
+//
+//    systemProperty 'enable.http2', 'true'
+//    exclude("**/*StressTest*")
+//
+//    if (JavaVersion.current() == JavaVersion.VERSION_1_8) {
+//        jvmArgs {
+//            def bootClasspath = configurations.boot.files
+//            bootClasspath.collect { "-Xbootclasspath/p:${it.absolutePath}" }.iterator()
+//        }
+//    }
+//} 
